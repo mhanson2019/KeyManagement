@@ -13,6 +13,12 @@ setup(
     install_requires=[
         'cryptography',
     ],
+    entry_points = {
+        'console_scripts': [
+            'setKeys = key_management.setKeys:main',
+            'getKeys = key_management.getKeys:main',
+        ],
+    },
     python_requires='>=3.6'
     
 )
