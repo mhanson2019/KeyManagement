@@ -15,8 +15,8 @@ setup(
     ],
     entry_points = {
         'console_scripts': [
-            'setKeys = key_management.setKeys:main',
-            'getKeys = key_management.getKeys:main',
+            'setKeys = KeyManagement.setKeys:main',
+            'getKeys = KeyManagement.getKeys:main',
         ],
     },
     python_requires='>=3.6'
