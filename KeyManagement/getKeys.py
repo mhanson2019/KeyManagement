@@ -1,4 +1,4 @@
-from key_handling import *
+from .key_handling import *
 import argparse
 import getpass
 
