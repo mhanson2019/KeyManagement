@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'key_management',
+    name = 'KeyManagement',
     version = '0.1',
     description = 'A simple key management package using encryption and pass keys',
     long_description = open('README.md').read(),
