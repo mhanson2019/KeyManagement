@@ -1,10 +1,25 @@
 from .key_handling import *
 import getpass
+import argparse
 import json
 
 programs = ["CDD_Vault", "SmartSheet"]
 
-def main():
+# set up argparse for passing in the
+def parse_args():
+    parser = argparse.ArgumentParser(description="Encrypt API keys with optional name of the file to save to")
+    parser.add_argument(
+        "-n",
+        "--name",
+        help="Name of the file to save the encrypted API keys",
+        defaault="api_keys.bin",
+        required=False,
+    )
+    return parser.parse_args()
+
+def main(filename):
+    if filename != "api_keys.bin":
+        print("Saving encrypted API keys to", filename)
     # read the programs list from a json file
     with open('programs.json', 'r') as f:
         programs = json.load(f)
@@ -30,12 +45,13 @@ def main():
     
     # Encrypt the api keys and save to a file
     encrypted_data = encrypt_data(str(api_keys).encode(), key)
-    save_encrypted_data('api_keys.bin', encrypted_data)
-    print("API keys encrypted and saved to api_keys.bin")
+    save_encrypted_data(filename, encrypted_data)
+    print(f"API keys encrypted and saved to {filename}")
     return key
     
 if __name__ == "__main__":
-    key = main()
+    args = parse_args()
+    key = main(args.name)
     
     # test decryption of the api key file
     encrypted_data = load_encrypted_data('api_keys.bin')
