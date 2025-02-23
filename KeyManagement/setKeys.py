@@ -1,9 +1,14 @@
 from .key_handling import *
 import getpass
+import json
 
 programs = ["CDD_Vault", "SmartSheet"]
 
 def main():
+    # read the programs list from a json file
+    with open('programs.json', 'r') as f:
+        programs = json.load(f)
+    
     # Use getpass to ask for the passcode
     passcode = getpass.getpass("Enter a passcode: ")
     
