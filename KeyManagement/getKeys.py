@@ -23,7 +23,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main(apiFile, key = None):
+def main(apiFile="api_keys.bin", key = None):
     if key is None:
         
         # Use getpass to ask for the key derived from the original passcode
