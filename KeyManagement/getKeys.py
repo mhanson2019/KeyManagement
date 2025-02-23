@@ -2,7 +2,7 @@ from .key_handling import *
 import argparse
 import getpass
 
-apiFile = 'api_keys.bin'
+#apiFile = 'api_keys.bin'
 
 # set up argparse for passing in the
 def parse_args():
@@ -13,10 +13,17 @@ def parse_args():
         help="Key to decrypt the API keys",
         required=False,
     )
+    parser.add_argument(
+        "-n",
+        "--name",
+        help="Name of the file to extract keys from",
+        default="api_keys.bin",
+        required=False,
+    )
     return parser.parse_args()
 
 
-def main(key = None):
+def main(apiFile, key = None):
     if key is None:
         
         # Use getpass to ask for the key derived from the original passcode
@@ -32,6 +39,6 @@ def main(key = None):
 
 if __name__ == "__main__":
     args = parse_args()
-    api_keys = main(args.key)
+    api_keys = main(args.name, args.key)
     
     print("API keys:", api_keys)
